@@ -44,7 +44,7 @@ function createCard(item){
 }
 
 function scrollToContact(){ document.getElementById('contact').scrollIntoView({behavior:'smooth'}); }
-function moreInfo(id){ alert('For more details about property id: ' + id + '\\nPlease contact us or scroll to Contact section.'); }
+function moreInfo(id){ alert('Please contact us using details from website'); }
 
 (async function init(){
   const data = await fetchData();
