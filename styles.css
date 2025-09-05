@@ -34,7 +34,7 @@ body{background:linear-gradient(180deg,#071025 0%, #071827 60%);color:#e6eef6;li
   position:relative;
   padding-top:64px;
   overflow:hidden;
-  background: url("images/bg1.png") center center / cover no-repeat;
+  background: url("images/bg1.png") center center / cover no-repeat fixed;
 }
 
 /* dark overlay for blending text */
