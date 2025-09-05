@@ -10,13 +10,11 @@ function escapeHtml(s) {
 }
 
 function getImageUrl(filename) {
-  if (!filename) return "images/placeholder.jpg";
-  return "images/" + encodeURIComponent(filename.trim());
+  return filename ? "images/" + encodeURIComponent(filename.trim()) : "images/placeholder.jpg";
 }
 
 async function fetchData() {
-  const url = CONFIG.csvUrl + "&t=" + Date.now();
-  const res = await fetch(url);
+  const res = await fetch(CONFIG.csvUrl + "&t=" + Date.now());
   const text = await res.text();
   const parsed = Papa.parse(text, { header: true, skipEmptyLines: true });
   return parsed.data;
@@ -29,7 +27,8 @@ function renderProperties(data) {
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
-      <img src="${getImageUrl(row[CONFIG.imageField])}" alt="${escapeHtml(row.title)}" onerror="this.src='images/placeholder.jpg'"/>
+      <img src="${getImageUrl(row[CONFIG.imageField])}" alt="${escapeHtml(row.title)}"
+        onerror="this.src='images/placeholder.jpg'"/>
       <div class="card-body">
         <h3>${escapeHtml(row.title)}</h3>
         <p>${escapeHtml(row.description)}</p>
