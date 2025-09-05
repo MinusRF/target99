@@ -49,8 +49,24 @@ body{background:linear-gradient(180deg,#071025 0%, #071827 60%);color:#e6eef6;li
 .hero-content{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:2rem;padding:2rem}
 .hero-left{flex:1}
 .hero-right{width:360px}
-.hero-title{font-family:'Playfair Display',serif;font-size:48px;margin:0;color:var(--gold);letter-spacing:1px}
-.hero-sub{color:var(--muted);margin:.6rem 0 1.2rem;font-size:18px}
+/* HERO TITLE */
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  margin: 0;
+  color: #ffffff; /* bright white */
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6); /* shadow for readability */
+}
+
+/* HERO SUBTITLE */
+.hero-sub {
+  color: #ffffff; /* bright white */
+  margin: .6rem 0 1.2rem;
+  font-size: 20px;
+  font-weight: 400;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.7); /* stronger shadow */
+}
 .btn{display:inline-block;padding:.7rem 1.1rem;border-radius:10px;text-decoration:none;border:0;cursor:pointer;font-weight:700}
 .primary{background:linear-gradient(90deg,var(--gold),#f2d47a);color:#071827;box-shadow:0 10px 30px rgba(212,175,55,0.12)}
 
@@ -69,47 +85,46 @@ h2{font-family:'Playfair Display',serif;font-size:28px;color:#fff;margin-bottom:
 /* ABOUT SECTION (updated) */
 #about {
   text-align: center;
-  padding: 3rem 1.5rem;
+  padding: 4rem 1.5rem;
   background: var(--card);
-  border-radius: 12px;
-  margin-top: 2rem;
+  border-radius: 16px;
+  margin-top: 3rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
 }
 
 #about h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  color: var(--gold);
-  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff; /* bright white */
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
 }
 
 #about p {
-  font-size: 1.1rem;
-  color: #e6eef6;
-  max-width: 800px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #f5f5f5; /* softer white */
+  max-width: 850px;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.75;
 }
 
 /* MEDIA SECTION: Responsive video/map */
 .media-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: 1fr 1fr; /* half-half */
   gap: 2rem;
   margin-top: 3rem;
-}
-
-.media-left h3, .media-right h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  color: var(--gold);
-  margin-bottom: 1rem;
-  text-align: center;
+  align-items: stretch;
 }
 
 .video-wrap, .map-wrap {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 ratio */
+  height: 400px; /* fixed height, adjust as needed */
   border-radius: 12px;
   overflow: hidden;
   background: #000;
