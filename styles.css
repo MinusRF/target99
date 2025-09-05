@@ -26,8 +26,49 @@ body{background:linear-gradient(180deg,#071025 0%, #071827 60%);color:#e6eef6;li
 
 /* HERO */
 .hero{height:84vh;display:flex;align-items:center;justify-content:center;position:relative;padding-top:64px;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg, rgba(3,6,12,0.5), rgba(1,8,20,0.5));mix-blend-mode:overlay}
-.hero-content{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:2rem;padding:2rem}
+
+/* rotating background wrapper */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.hero-bg .slide{
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  opacity: 0;
+  transform: scale(1.03);
+  filter: blur(2px);
+  transition:
+    opacity 1.2s cubic-bezier(.4,0,.2,1),
+    transform 1.2s cubic-bezier(.4,0,.2,1),
+    filter 1.2s cubic-bezier(.4,0,.2,1);
+  will-change: opacity, transform, filter;
+  pointer-events: none;
+}
+.hero-bg .slide.active{
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+  pointer-events: auto;
+}
+.hero-bg .slide { backface-visibility: hidden; }
+
+/* overlay for text contrast */
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(2,6,23,0.55),rgba(2,6,23,0.45));
+  z-index:1;
+}
+
+/* content */
+.hero-content{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:2rem;padding:2rem}
 .hero-left{flex:1}
 .hero-right{width:360px}
 .hero-title{font-family:'Playfair Display',serif;font-size:48px;margin:0;color:var(--gold);letter-spacing:1px}
@@ -47,17 +88,13 @@ body{background:linear-gradient(180deg,#071025 0%, #071827 60%);color:#e6eef6;li
 .narrow{max-width:900px}
 h2{font-family:'Playfair Display',serif;font-size:28px;color:#fff;margin-bottom:.8rem}
 
-/* MEDIA - large video, full-fit embeds */
-/* layout: video is larger (2fr) and map is smaller (1fr) */
+/* MEDIA SECTION */
 .media-section{
   display:grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns:2fr 1fr;
   gap:1.25rem;
   align-items:stretch;
 }
-
-/* make both embeds responsive and fill their column fully */
-/* video gets full-width, full-height fit inside its column */
 .video-wrap, .map-wrap {
   position: relative;
   width: 100%;
@@ -68,31 +105,22 @@ h2{font-family:'Playfair Display',serif;font-size:28px;color:#fff;margin-bottom:
   border: 1px solid rgba(255,255,255,0.03);
   display:block;
 }
-
-/* For video we want it to cover the area (like background cover) while keeping aspect */
 .video-wrap iframe {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 177.77%; /* 16:9 cover technique: width = 100 * (16/9) */
+  width: 177.77%;
   height: 100%;
   transform: translate(-50%, -50%);
   border: 0;
   object-fit: cover;
 }
-
-/* For map we make it fit fully but keep center */
 .map-wrap iframe {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
+  top:0; left:0;
+  width:100%; height:100%;
+  border:0;
 }
-
-/* fallback if iframe smaller screens, ensure no overflow gaps */
-.video-wrap::before, .map-wrap::before { content:""; display:block }
 
 /* PROPERTIES SEARCH */
 .section-header{display:flex;align-items:center;justify-content:space-between;gap:1rem}
