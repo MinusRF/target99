@@ -66,49 +66,65 @@ body{background:linear-gradient(180deg,#071025 0%, #071827 60%);color:#e6eef6;li
 .narrow{max-width:900px}
 h2{font-family:'Playfair Display',serif;font-size:28px;color:#fff;margin-bottom:.8rem}
 
-/* MEDIA - large video, full-fit embeds */
-/* layout: video is larger (2fr) and map is smaller (1fr) */
-.media-section{
-  display:grid;
-  grid-template-columns: 2fr 1fr;
-  gap:1.25rem;
-  align-items:stretch;
+/* ABOUT SECTION (updated) */
+#about {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: var(--card);
+  border-radius: 12px;
+  margin-top: 2rem;
 }
 
-/* make both embeds responsive and fill their column fully */
-/* video gets full-width, full-height fit inside its column */
+#about h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+#about p {
+  font-size: 1.1rem;
+  color: #e6eef6;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* MEDIA SECTION: Responsive video/map */
+.media-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.media-left h3, .media-right h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
 .video-wrap, .map-wrap {
   position: relative;
   width: 100%;
-  height: 100%;
+  padding-top: 56.25%; /* 16:9 ratio */
   border-radius: 12px;
   overflow: hidden;
-  background: var(--card);
-  border: 1px solid rgba(255,255,255,0.03);
-  display:block;
+  background: #000;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
 }
 
-/* For video we want it to cover the area (like background cover) while keeping aspect */
-.video-wrap iframe {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 177.77%; /* 16:9 cover technique: width = 100 * (16/9) */
-  height: 100%;
-  transform: translate(-50%, -50%);
-  border: 0;
-  object-fit: cover;
-}
-
-/* For map we make it fit fully but keep center */
+.video-wrap iframe,
 .map-wrap iframe {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
 }
+
 
 /* fallback if iframe smaller screens, ensure no overflow gaps */
 .video-wrap::before, .map-wrap::before { content:""; display:block }
