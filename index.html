@@ -1,83 +1,131 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Target99 Real Estate</title>
-  <link rel="stylesheet" href="styles.css"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Navigation -->
   <nav class="navbar">
-    <div class="logo">Target99</div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#properties">Properties</a></li>
-      <li><a href="#testimonials">Testimonials</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="nav-inner">
+      <a class="brand" href="#home">
+        <img src="images/logo.png" alt="Target99 Logo" class="logo"/>
+        <span class="brand-text">TARGET99</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#properties">Properties</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="cta" href="#contact">Contact Us</a>
+      <button class="nav-toggle" aria-label="Open menu">☰</button>
+    </div>
   </nav>
 
-  <!-- Hero Section -->
-  <header class="hero">
+  <header id="home" class="hero">
+    <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1>Target99 Real Estate</h1>
-      <p>Trusted Advisors · Custom Experiences · Premium Locations</p>
-      <a href="#properties" class="btn">Find Properties</a>
+      <div class="hero-left">
+        <h1 class="hero-title">Target99 Real Estate</h1>
+        <p class="hero-sub">Trusted Advisors · Custom Experiences · Premium Locations</p>
+        <a class="btn primary" href="#properties">Find Properties</a>
+      </div>
+      <div class="hero-right">
+        <div class="hero-card">
+          <h4>Premium Locations</h4>
+          <p>Curated properties in top neighbourhoods — handpicked and verified.</p>
+          <div class="trusts">
+            <span>Trusted advisors</span>
+            <span>Custom experience</span>
+            <span>Premium locations</span>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- About Section -->
-  <section id="about" class="about">
-    <h2>About Us</h2>
-    <p>At Target99, we redefine real estate by blending premium locations, personalized services, and trusted expertise. Whether you're buying, investing, or selling, our advisors ensure a seamless experience.</p>
-  </section>
+  <main>
+    <section id="about" class="section narrow">
+      <h2>About Target99</h2>
+      <p>At Target99, we redefine real estate by blending premium locations, personalised service and trusted expertise. Our advisors guide you end-to-end.</p>
+    </section>
 
-  <!-- Video + Map Section -->
-  <section class="media-section">
-    <div class="media-box">
-      <h2>Our Story</h2>
-      <iframe width="100%" height="315"
-        src="https://www.youtube.com/embed/aUtAFZ5VlsU"
-        frameborder="0" allowfullscreen></iframe>
+    <section class="media-section section">
+      <div class="media-left">
+        <h3>Our Story</h3>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/aUtAFZ5VlsU" title="Target99 Video" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="media-right">
+        <h3>Visit Us</h3>
+        <div class="map-wrap">
+          <iframe src="https://maps.google.com/maps?q=28.427681,77.080712&z=15&output=embed" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="properties" class="section">
+      <div class="section-header">
+        <h2>Find Properties</h2>
+        <div class="search-wrap">
+          <input id="search" class="search-input" placeholder="Search by title, address or price (e.g., 45000)" />
+          <button id="search-clear" class="icon-btn" title="Clear">✕</button>
+        </div>
+      </div>
+
+      <div id="property-list" class="property-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="testimonials" class="section narrow">
+      <h2>What Our Customers Say</h2>
+      <div class="testimonial-carousel" id="testi">
+        <div class="testi-item">“Target99 helped me find the perfect home in Gurgaon. The team is amazing!”</div>
+        <div class="testi-item">“Professional, transparent, and very supportive. Highly recommend Target99.”</div>
+        <div class="testi-item">“They guided me step by step for my investment. Trustworthy advisors.”</div>
+      </div>
+    </section>
+
+    <section id="contact" class="section narrow contact-section">
+      <h2>Contact Us</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h4>Get in touch</h4>
+          <p><strong>Phone:</strong> <a href="tel:+919577799911">+91 95777 99911</a>, <a href="tel:+919910733099">+91 99107 33099</a></p>
+          <p><strong>Email:</strong> <a href="mailto:dk.realestate138@gmail.com">dk.realestate138@gmail.com</a></p>
+          <p><strong>Instagram:</strong> <a href="https://www.instagram.com/thetarget99group/" target="_blank">@thetarget99group</a></p>
+        </div>
+
+        <div class="contact-card">
+          <h4>Request a callback</h4>
+          <form id="contact-form" class="contact-form" onsubmit="return false;">
+            <input id="name" placeholder="Your name" required/>
+            <input id="phone" placeholder="Phone number" required/>
+            <input id="email" placeholder="Email address" type="email"/>
+            <textarea id="message" placeholder="Tell us what you need" rows="4"></textarea>
+            <button class="btn primary" id="contact-submit">Send Request</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <img src="images/logo.png" alt="Target99" class="footer-logo"/>
+        <div>© 2025 Target99 Real Estate</div>
+      </div>
+      <div class="footer-right">
+        <small>Trusted Advisors · Custom Experience · Premium Locations</small>
+      </div>
     </div>
-    <div class="media-box">
-      <h2>Visit Us</h2>
-      <iframe
-        src="https://maps.google.com/maps?q=28.427681,77.080712&z=15&output=embed"
-        width="100%" height="315" style="border:0;"></iframe>
-    </div>
-  </section>
-
-  <!-- Properties Section -->
-  <section id="properties" class="properties">
-    <h2>Find Properties</h2>
-    <input id="search" type="text" placeholder="Search properties..." class="search-box">
-    <div id="property-list" class="property-grid"></div>
-  </section>
-
-  <!-- Testimonials -->
-  <section id="testimonials" class="testimonials">
-    <h2>What Our Customers Say</h2>
-    <div class="testimonial-grid">
-      <blockquote>“Target99 helped me find the perfect home in Gurgaon. The team is amazing!” – Ankit</blockquote>
-      <blockquote>“Professional, transparent, and very supportive. Highly recommend Target99.” – Neha</blockquote>
-      <blockquote>“They guided me step by step for my investment. Trustworthy advisors.” – Rajesh</blockquote>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="contact">
-    <h2>Contact Us</h2>
-    <div class="contact-info">
-      <p>📧 <a href="mailto:dk.realestate138@gmail.com">dk.realestate138@gmail.com</a></p>
-      <p>📞 <a href="tel:+919577799911">+91 95777 99911</a>, <a href="tel:+919910733099">+91 99107 33099</a></p>
-      <p>📸 <a href="https://www.instagram.com/thetarget99group/" target="_blank">@thetarget99group</a></p>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Target99 Real Estate · All Rights Reserved</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
