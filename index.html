@@ -1,201 +1,72 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Property Listings</title>
-  <meta name="description" content="Property listings powered by Google Sheets and GitHub Pages" />
-  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
-  <style>
-    :root{
-      --bg: #f6f7fb;
-      --card: #ffffff;
-      --muted: #6b7280;
-      --accent: #0b6b4f;
-      --maxw: 1100px;
-    }
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:#0f172a;-webkit-font-smoothing:antialiased}
-    .wrap{max-width:var(--maxw);margin:28px auto;padding:0 16px}
-    header{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-    h1{font-size:22px;margin:0}
-    p.lead{margin:0;color:var(--muted)}
-    .controls{display:flex;gap:8px;margin:18px 0;flex-wrap:wrap;align-items:center}
-    .search{flex:1;min-width:220px;padding:10px 12px;border-radius:10px;border:1px solid #e6e9ef;background:#fff;box-shadow:0 1px 0 rgba(12,18,29,0.02);font-size:14px}
-    .select{padding:9px 12px;border-radius:10px;border:1px solid #e6e9ef;background:#fff}
-    .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
-    .card{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(12,18,29,0.06);display:flex;flex-direction:column;transition:transform .12s ease,box-shadow .12s ease}
-    .card:hover{transform:translateY(-6px)}
-    .media{height:170px;background:#f2f4f7;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .media img{width:100%;height:100%;object-fit:cover;display:block}
-    .body{padding:12px 14px;flex:1;display:flex;flex-direction:column}
-    .title{font-size:16px;margin:0 0 6px;line-height:1.2}
-    .desc{color:var(--muted);font-size:13px;margin:0 0 8px;flex:1}
-    .meta{display:flex;justify-content:space-between;align-items:center;gap:8px}
-    .price{font-weight:700;color:var(--accent)}
-    .address{color:var(--muted);font-size:13px}
-    .status{color:var(--muted);font-size:13px;margin-left:6px}
-    .empty{padding:40px;text-align:center;color:var(--muted)}
-    .note{font-size:13px;color:var(--muted);margin-top:12px}
-    footer{max-width:var(--maxw);margin:24px auto 60px;padding:0 16px;color:var(--muted);font-size:13px}
-    @media (max-width:420px){.media{height:140px}}
-  </style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Target99 Real Estate</title>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div>
-        <h1>Property Listings</h1>
-        <p class="lead">Live from your Google Sheet, images served from this repo</p>
-      </div>
-      <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
-        <div class="status" id="status">loading...</div>
-      </div>
-    </header>
+  <!-- Hero Section -->
+  <header class="hero">
+    <h1>Target99 Real Estate</h1>
+    <p>Trusted Advisors · Custom Experiences · Premium Locations</p>
+  </header>
 
-    <div class="controls" aria-hidden="false">
-      <input id="q" class="search" placeholder="Search title address or price" autocomplete="off" />
-      <select id="sort" class="select" title="Sort">
-        <option value="new">Sort</option>
-        <option value="price-asc">Price low to high</option>
-        <option value="price-desc">Price high to low</option>
-        <option value="title-az">Title A to Z</option>
-      </select>
+  <!-- About Section -->
+  <section class="about">
+    <h2>About Us</h2>
+    <p>At Target99, we help you find your dream home and premium investment opportunities with trusted advice and personalized service.</p>
+  </section>
+
+  <!-- Video + Map Section -->
+  <section class="media-section">
+    <div class="media-box">
+      <h2>Watch Our Story</h2>
+      <iframe width="100%" height="315"
+        src="https://www.youtube.com/embed/aUtAFZ5VlsU"
+        frameborder="0" allowfullscreen></iframe>
     </div>
+    <div class="media-box">
+      <h2>Visit Us</h2>
+      <iframe
+        src="https://maps.google.com/maps?q=28.427681,77.080712&z=15&output=embed"
+        width="100%" height="315" style="border:0;"></iframe>
+    </div>
+  </section>
 
-    <section id="list" class="grid" aria-live="polite" role="list"></section>
-    <div id="empty" class="empty" style="display:none">No properties found</div>
-    <p class="note">To update listings edit the Google Sheet. To add images upload them to images/ in this repo and reference filenames in the sheet.</p>
-  </div>
+  <!-- Properties Section -->
+  <section class="properties">
+    <h2>Find Properties</h2>
+    <div class="controls">
+      <input id="search" type="text" placeholder="Search properties...">
+    </div>
+    <div id="property-list" class="property-grid"></div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <h2>What Our Customers Say</h2>
+    <div class="testimonial-grid">
+      <blockquote>“Target99 helped me find the perfect home in Gurgaon. The team is amazing!” – Ankit</blockquote>
+      <blockquote>“Professional, transparent, and very supportive. Highly recommend Target99.” – Neha</blockquote>
+      <blockquote>“They guided me step by step for my investment. Trustworthy advisors.” – Rajesh</blockquote>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p>Email: <a href="mailto:dk.realestate138@gmail.com">dk.realestate138@gmail.com</a></p>
+    <p>Phone: <a href="tel:+919577799911">+91 95777 99911</a>, <a href="tel:+919910733099">+91 99107 33099</a></p>
+    <p>Instagram: <a href="https://www.instagram.com/thetarget99group/" target="_blank">@thetarget99group</a></p>
+  </section>
 
   <footer>
-    Data is public. Avoid storing private info in the published sheet.
+    <p>&copy; 2025 Target99 Real Estate · All Rights Reserved</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
-  <script>
-    const CONFIG = {
-      csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSV4LNJm-Lw-zSo5hCbYNaN8KBt_v36r7e2dQkr72tQVteWN2McQ8tA8tltenNITqpmYfuMKsefzY4r/pub?gid=0&single=true&output=csv',
-      imageField: 'image_filename',
-      defaultImage: 'images/placeholder.jpg'
-    };
-
-    function escapeHtml(s){
-      if(s === undefined || s === null) return '';
-      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-    }
-
-    function getImageUrl(filename){
-      if(!filename) return CONFIG.defaultImage;
-      const name = filename.trim();
-      return 'images/' + encodeURIComponent(name);
-    }
-
-    function formatPrice(v){
-      if(!v) return '';
-      const n = String(v).replace(/[^\d.]/g,'');
-      if(!n) return escapeHtml(v);
-      return '₹' + Number(n).toLocaleString('en-IN');
-    }
-
-    async function fetchCsvText(url){
-      const sep = url.includes('?') ? '&' : '?';
-      const u = url + sep + 't=' + Date.now();
-      const res = await fetch(u);
-      if(!res.ok) throw new Error('Fetch failed ' + res.status);
-      return await res.text();
-    }
-
-    async function loadData(){
-      document.getElementById('status').textContent = 'loading...';
-      try{
-        const txt = await fetchCsvText(CONFIG.csvUrl);
-        const parsed = Papa.parse(txt, { header: true, skipEmptyLines: true, transformHeader: h => h.trim().toLowerCase() });
-        const data = parsed.data.map(r => ({
-          id: (r.id||'').trim(),
-          title: (r.title||'').trim(),
-          description: (r.description||'').trim(),
-          price: (r.price||'').trim(),
-          address: (r.address||'').trim(),
-          image_filename: (r[CONFIG.imageField] || r.image_filename || '').trim()
-        }));
-        document.getElementById('status').textContent = `${data.length} listings`;
-        return data;
-      }catch(err){
-        console.error(err);
-        document.getElementById('status').textContent = 'could not load sheet';
-        return [];
-      }
-    }
-
-    function createCard(item){
-      const el = document.createElement('article');
-      el.className = 'card';
-      const imgUrl = getImageUrl(item.image_filename);
-      el.innerHTML = `
-        <div class="media" role="img" aria-label="${escapeHtml(item.title||'property image')}">
-          <img src="${escapeHtml(imgUrl)}" alt="${escapeHtml(item.title||'Property')}" loading="lazy" onerror="this.onerror=null;this.src='${escapeHtml(CONFIG.defaultImage)}'"/>
-        </div>
-        <div class="body">
-          <h3 class="title">${escapeHtml(item.title||'Untitled')}</h3>
-          <p class="desc">${escapeHtml(item.description||'')}</p>
-          <div class="meta">
-            <div>
-              <div class="address">${escapeHtml(item.address||'')}</div>
-            </div>
-            <div>
-              <div class="price">${formatPrice(item.price)}</div>
-            </div>
-          </div>
-        </div>
-      `;
-      return el;
-    }
-
-    function renderList(items){
-      const list = document.getElementById('list');
-      const empty = document.getElementById('empty');
-      list.innerHTML = '';
-      if(!items || items.length === 0){
-        empty.style.display = 'block';
-        return;
-      } else {
-        empty.style.display = 'none';
-      }
-      const frag = document.createDocumentFragment();
-      items.forEach(it => frag.appendChild(createCard(it)));
-      list.appendChild(frag);
-    }
-
-    function normalizeForSearch(s){
-      return (s||'').toString().toLowerCase();
-    }
-
-    function applyFiltersAndRender(all){
-      const q = document.getElementById('q').value.trim().toLowerCase();
-      const sort = document.getElementById('sort').value;
-      let filtered = all.filter(it => {
-        if(!q) return true;
-        const hay = [it.title, it.description, it.address, it.price].join(' ').toLowerCase();
-        return hay.includes(q);
-      });
-      if(sort === 'price-asc'){
-        filtered.sort((a,b)=> (Number(a.price.replace(/[^\d.]/g,''))||0) - (Number(b.price.replace(/[^\d.]/g,''))||0));
-      } else if(sort === 'price-desc'){
-        filtered.sort((a,b)=> (Number(b.price.replace(/[^\d.]/g,''))||0) - (Number(a.price.replace(/[^\d.]/g,''))||0));
-      } else if(sort === 'title-az'){
-        filtered.sort((a,b)=> String(a.title||'').localeCompare(String(b.title||'')));
-      }
-      renderList(filtered);
-    }
-
-    (async function main(){
-      const all = await loadData();
-      applyFiltersAndRender(all);
-      document.getElementById('q').addEventListener('input', () => applyFiltersAndRender(all));
-      document.getElementById('sort').addEventListener('change', () => applyFiltersAndRender(all));
-      // optional polling every 45s to reflect sheet edits without reload
-      // setInterval(async ()=>{ const fresh = await loadData(); Object.assign(all, fresh); applyFiltersAndRender(all); }, 45000);
-    })();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
