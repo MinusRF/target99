@@ -77,48 +77,4 @@ function moreInfo(id){ alert('Please contact us using details from website'); }
     const nav = document.querySelector('.nav-links');
     nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
   });
-
-  // rotating hero background
-  (function heroRotator(){
-    const slides = Array.from(document.querySelectorAll('.hero-bg .slide'));
-    if(!slides.length) return;
-
-    // preload images
-    slides.forEach(s => {
-      const url = s.dataset.src || (s.style.backgroundImage || '').slice(5,-2);
-      if(url) new Image().src = url;
-    });
-
-    // initial state
-    slides.forEach((s,i) => s.classList.toggle('active', i === 0));
-    let idx = 0;
-    const intervalMs = 5000;
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(prefersReduced) return;
-
-    function nextSlide(){
-      const prev = slides[idx];
-      idx = (idx + 1) % slides.length;
-      const cur = slides[idx];
-      prev.classList.remove('active');
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          cur.classList.add('active');
-        });
-      });
-    }
-
-    let timer = setInterval(nextSlide, intervalMs);
-
-    // pause rotation on user interaction
-    const heroEl = document.querySelector('.hero');
-    if(heroEl){
-      heroEl.addEventListener('mouseenter', ()=> clearInterval(timer));
-      heroEl.addEventListener('focusin', ()=> clearInterval(timer));
-      heroEl.addEventListener('mouseleave', ()=>{
-        clearInterval(timer);
-        timer = setInterval(nextSlide, intervalMs);
-      });
-    }
-  })();
 })();
